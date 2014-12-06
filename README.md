@@ -1,4 +1,4 @@
-<h2> Virtual Machine For Zephir Extensions Development </h2>
+<h2> Virtual Machine For Zephir Extension Development </h2>
 
 <h4>Requirements:</h4>
 1) VirtualBox<br/>
