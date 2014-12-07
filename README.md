@@ -1,5 +1,15 @@
 <h2> Virtual Machine For Zephir Extension Development </h2>
 
+<h4>Vagrant contains:</h4>
+<ul>
+  <li>Zephir language installed (accessible via 'zephir' commmand)</li>
+  <li>Apache2 webserver installed</li>
+  <li>Php ver. 5.4.35 </li>
+  <li>Composer installed (accessible via 'composer' command)</li>
+  <li>Phalcon2 extension added to PHP</li>
+  <li>Synchronization with your local folder (read bellow)</li>
+</ul>
+
 <h4>Requirements:</h4>
 1) VirtualBox<br/>
 2) Vagrant<br/>
