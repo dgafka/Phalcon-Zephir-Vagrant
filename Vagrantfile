@@ -20,7 +20,7 @@ apt-get --force-yes -y install re2c libpcre3-dev curl vim php-apc
 cd /tmp
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /bin/composer
-cd /tmp
+cd /home/vagrant
 git clone https://github.com/phalcon/zephir
 cd zephir
 ./install -c
@@ -36,7 +36,7 @@ echo "extension=phalcon.so" >> /etc/php5/cli/conf.d/20-phalcon.ini
 /etc/init.d/apache2 restart
 echo "From now you will be able to develop your extension locally via synchronized folder. Vagrant will search for sync folder in one level higher in the tree structure under folder named 'data'"
 echo "For example, if your vagrant folder path is /home/user/vagrant then /home/user/data will be synced."
-echo "That folder will be accessible via via brower under 192.168.33.10"
+echo "That folder will be accessible via via browser under 192.168.33.10"
 echo "And via vagrant ssh under /vagrant_data/ folder"
 echo "You can use composer by typing 'composer'."
 echo "You can use zephir console by typing 'zephir'."
