@@ -16,25 +16,30 @@ sh autogen.sh
 ./configure
 make
 make install
-apt-get --force-yes -y install re2c libpcre3-dev curl vim
+apt-get --force-yes -y install re2c libpcre3-dev curl vim php-apc
 cd /tmp
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /bin/composer
-sudo su vagrant -c "composer global require phalcon/zephir"
-cd /usr/bin/
-ln -s /home/vagrant/.composer/vendor/bin/zephir zephir
-echo "You can use composer by typing 'composer'."
-echo "You can use zephir console by typing 'zephir'."
-touch /home/vagrant/.bash_profile
-echo "export ZEPHIRDIR=/home/vagrant/.composer/vendor/phalcon/zephir" >> /home/vagrant/.bash_profile
-cd /home/vagrant/.composer/vendor/phalcon/zephir
-sh install
+cd /tmp
+git clone https://github.com/phalcon/zephir
+cd zephir
+./install -c
 ln -s /vagrant_data/ /var/www/extension
 rm /var/www/index.html
+cd /tmp
+git clone http://github.com/phalcon/cphalcon
+cd cphalcon
+git checkout 2.0.0
+zephir build
+echo "extension=phalcon.so" >> /etc/php5/apache2/conf.d/20-phalcon.ini
+echo "extension=phalcon.so" >> /etc/php5/cli/conf.d/20-phalcon.ini
+/etc/init.d/apache2 restart
 echo "From now you will be able to develop your extension locally via synchronized folder. Vagrant will search for sync folder in one level higher in the tree structure under folder named 'data'"
 echo "For example, if your vagrant folder path is /home/user/vagrant then /home/user/data will be synced."
 echo "That folder will be accessible via via brower under 192.168.33.10"
 echo "And via vagrant ssh under /vagrant_data/ folder"
+echo "You can use composer by typing 'composer'."
+echo "You can use zephir console by typing 'zephir'."
 echo "Have fun developing zephir extensions!"
 SCRIPT
 
